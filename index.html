@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,40 +10,48 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f8f8f8;
       color: #333;
     }
+
     /* Header */
     header {
       display: flex;
       align-items: center;
       padding: 10px 15px;
-      background-color: #007BFF;
+      background-color: #007bff;
       color: #fff;
     }
+
     #menu-icon {
       font-size: 24px;
       margin-right: 10px;
     }
+
     header h1 {
       font-size: 20px;
       margin: 0 auto;
     }
+
     /* Container */
     .container {
       padding: 15px;
       padding-bottom: 70px;
     }
+
     /* Pages */
     .page {
       display: none;
     }
+
     .page.active {
       display: block;
     }
+
     /* Sections */
     section {
       background: #fff;
@@ -51,10 +60,13 @@
       padding: 15px;
       margin-bottom: 15px;
     }
-    h2, h3, h4 {
-      text-align: center;
+
+    h2,
+    h3,
+    h4 {
       margin-top: 0;
     }
+
     input[type="text"],
     input[type="number"],
     select {
@@ -64,54 +76,65 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     button {
       background-color: #fff;
-      color: #007BFF;
-      border: 2px solid #007BFF;
+      color: #007bff;
+      border: 2px solid #007bff;
       border-radius: 4px;
       padding: 8px 12px;
       margin-top: 8px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     button:hover {
-      background-color: #007BFF;
+      background-color: #007bff;
       color: #fff;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
     }
+
     li {
       margin-bottom: 10px;
       border-bottom: 1px solid #eee;
       padding-bottom: 5px;
     }
+
     .participant-actions button,
     .menu-actions button,
     .transaction-actions button {
       margin-left: 5px;
     }
-    .menu-item, .transaction-item {
-      border: 1px dashed #007BFF;
+
+    .menu-item,
+    .transaction-item {
+      border: 1px dashed #007bff;
       border-radius: 4px;
       padding: 8px;
       margin-bottom: 8px;
     }
+
     .checkbox-group {
       display: flex;
       flex-wrap: wrap;
       margin: 8px 0;
     }
+
     .checkbox-group label {
       margin-right: 10px;
       font-size: 14px;
     }
+
     .summary-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
     }
+
     .summary-table th,
     .summary-table td {
       border: 1px solid #ccc;
@@ -119,11 +142,13 @@
       text-align: center;
       font-size: 13px;
     }
+
     #transactionAdjustments label {
       display: block;
       margin-top: 10px;
       font-weight: bold;
     }
+
     .note {
       font-size: 12px;
       color: #666;
@@ -131,6 +156,7 @@
       font-style: italic;
       margin-top: 10px;
     }
+
     /* Bottom Navigation */
     #bottom-nav {
       position: fixed;
@@ -145,23 +171,28 @@
       align-items: center;
       z-index: 100;
     }
+
     .nav-btn {
       border: none;
       background: none;
       font-size: 14px;
-      color: #007BFF;
+      color: #007bff;
       cursor: pointer;
     }
-    .nav-btn:focus { outline: none; }
+
+    .nav-btn:focus {
+      outline: none;
+    }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header>
     <span id="menu-icon">☰</span>
     <h1>Split Bill App</h1>
   </header>
-  
+
   <!-- Main App Container -->
   <div class="container">
     <!-- Home Page: Participants & New Transaction -->
@@ -177,10 +208,15 @@
           <!-- Participants will be listed here -->
         </ul>
       </section>
-      
+
       <!-- Transaction Builder Section -->
       <section id="transaction-section">
         <h2>New Transaction</h2>
+        <!-- Transaction Name Field -->
+        <div>
+          <label for="transactionName">Transaction Name:</label>
+          <input type="text" id="transactionName" placeholder="Enter transaction name" />
+        </div>
         <!-- Transaction-level Payer -->
         <div>
           <label for="transactionPayer">Transaction Payer:</label>
@@ -188,7 +224,7 @@
             <option value="">Select Transaction Payer</option>
           </select>
         </div>
-        
+
         <!-- Transaction Adjustments -->
         <div id="transactionAdjustments">
           <label for="discountApplicationOrder">Discount Application Order:</label>
@@ -196,7 +232,7 @@
             <option value="before">Before Tax and Service</option>
             <option value="after">After Tax and Service</option>
           </select>
-          
+
           <label for="discountType">Discount Type:</label>
           <select id="discountType">
             <option value="none">None</option>
@@ -204,17 +240,17 @@
             <option value="flat">Flat Amount</option>
           </select>
           <input type="number" id="discountValue" placeholder="Discount value" min="0" step="0.01" />
-          
+
           <label for="taxPercentage">Tax Percentage (%):</label>
           <input type="number" id="taxPercentage" placeholder="Tax Percentage" min="0" step="0.01" />
-          
+
           <label for="serviceAmount">Service Amount:</label>
           <input type="number" id="serviceAmount" placeholder="Service Amount" min="0" step="0.01" />
         </div>
         <div class="note">
           Note: Choose whether the discount is applied before tax/service (reducing taxable amount) or after.
         </div>
-        
+
         <!-- Menu Items for Transaction -->
         <div id="transactionMenuForm">
           <input type="text" id="menuItemName" placeholder="Menu item name" />
@@ -231,7 +267,7 @@
         <button id="finalizeTransaction">Finalize Transaction</button>
       </section>
     </div>
-    
+
     <!-- Transactions Page: Finalized Transactions List -->
     <div id="page-transactions" class="page">
       <section id="transactions-list-section">
@@ -241,7 +277,7 @@
         </ul>
       </section>
     </div>
-    
+
     <!-- Settlement Page: Per-Participant Detailed Settlement -->
     <div id="page-settlement" class="page">
       <section id="settlement-section">
@@ -250,20 +286,23 @@
         <select id="participantSettlementSelect">
           <option value="">Select Participant</option>
         </select>
+        <button id="downloadAllSettlementsPDF">Download All Settlements as PDF</button>
         <div id="participantSettlementResult">
           <!-- Detailed settlement for the selected participant will appear here -->
         </div>
       </section>
     </div>
   </div>
-  
+
   <!-- Bottom Navigation -->
   <nav id="bottom-nav">
     <button class="nav-btn" data-page="page-home">Home</button>
     <button class="nav-btn" data-page="page-transactions">Transactions</button>
     <button class="nav-btn" data-page="page-settlement">Settlement</button>
   </nav>
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     // Helper function to format amounts in Indonesian Rupiah.
     function formatCurrency(amount) {
@@ -274,7 +313,7 @@
         maximumFractionDigits: 2
       }).format(amount);
     }
-    
+
     // DATA arrays and counters.
     let participants = [];
     let transactions = [];
@@ -282,20 +321,21 @@
     let participantIdCounter = 1;
     let transactionIdCounter = 1;
     let menuItemIdCounter = 1;
-    
+
     // DOM Elements: Participants.
     const participantNameInput = document.getElementById('participantName');
     const addParticipantButton = document.getElementById('addParticipant');
     const participantList = document.getElementById('participantList');
-    
+
     // DOM Elements: Transaction controls.
+    const transactionNameInput = document.getElementById('transactionName');
     const transactionPayerSelect = document.getElementById('transactionPayer');
     const discountApplicationOrderSelect = document.getElementById('discountApplicationOrder');
     const discountTypeSelect = document.getElementById('discountType');
     const discountValueInput = document.getElementById('discountValue');
     const taxPercentageInput = document.getElementById('taxPercentage');
     const serviceAmountInput = document.getElementById('serviceAmount');
-    
+
     // DOM Elements: Menu item inputs.
     const menuItemNameInput = document.getElementById('menuItemName');
     const menuItemPriceInput = document.getElementById('menuItemPrice');
@@ -304,10 +344,10 @@
     const addMenuItemButton = document.getElementById('addMenuItem');
     const currentMenuList = document.getElementById('currentMenuList');
     const finalizeTransactionButton = document.getElementById('finalizeTransaction');
-    
+
     // DOM Elements: Transactions.
     const transactionList = document.getElementById('transactionList');
-    
+
     // DOM Elements: Settlement Page.
     const participantSettlementSelect = document.getElementById('participantSettlementSelect');
     const participantSettlementResult = document.getElementById('participantSettlementResult');
@@ -324,7 +364,7 @@
       }
       return name
     }
-    
+
     // Update participant options for dropdowns and checkboxes.
     function updateParticipantOptions() {
       // Update transaction payer dropdown.
@@ -335,7 +375,7 @@
         option.textContent = p.name;
         transactionPayerSelect.appendChild(option);
       });
-      
+
       // Update sharing checkboxes.
       menuItemSharingDiv.innerHTML = '<p>Select sharing participants:</p>';
       const checkboxGroup = document.createElement('div');
@@ -350,11 +390,11 @@
         checkboxGroup.appendChild(label);
       });
       menuItemSharingDiv.appendChild(checkboxGroup);
-      
+
       // Update Settlement Page participant dropdown.
       updateSettlementSelect();
     }
-    
+
     // Render Participant List.
     function renderParticipantList() {
       participantList.innerHTML = '';
@@ -388,7 +428,7 @@
         participantList.appendChild(li);
       });
     }
-    
+
     // Render Current Menu List in the Ongoing Transaction.
     function renderCurrentMenuList() {
       currentMenuList.innerHTML = '';
@@ -412,7 +452,7 @@
         currentMenuList.appendChild(li);
       });
     }
-    
+
     // Render Finalized Transactions List.
     function renderTransactionList() {
       transactionList.innerHTML = '';
@@ -420,7 +460,7 @@
         const li = document.createElement('li');
         li.className = 'transaction-item';
         const payerName = participants.find(p => p.id == trans.payerId)?.name || 'Unknown';
-        let html = `<strong>Transaction #${trans.id}</strong><br>
+        let html = `<strong>Transaction #${trans.id}</strong> - <strong>${trans.name || ''}</strong><br>
                     Payer: ${payerName}<br>`;
         let baseTotal = 0;
         trans.menus.forEach(menu => {
@@ -467,7 +507,7 @@
         transactionList.appendChild(li);
       });
     }
-    
+
     // Add Participant.
     addParticipantButton.addEventListener('click', () => {
       const name = participantNameInput.value.trim();
@@ -480,7 +520,7 @@
         alert('Please enter a valid participant name.');
       }
     });
-    
+
     // Add Menu Item.
     addMenuItemButton.addEventListener('click', () => {
       const itemName = menuItemNameInput.value.trim();
@@ -520,7 +560,7 @@
       sharingCheckboxes.forEach(cb => { cb.checked = false; });
       renderCurrentMenuList();
     });
-    
+
     // Finalize Transaction.
     finalizeTransactionButton.addEventListener('click', () => {
       if (currentMenus.length === 0) {
@@ -532,6 +572,12 @@
         alert('Please select a transaction payer.');
         return;
       }
+      // Read transaction name
+      const transactionName = transactionNameInput.value.trim();
+      if (!transactionName) {
+        alert('Please enter a transaction name.');
+        return;
+      }
       // Read adjustments.
       const discountApplicationOrder = discountApplicationOrderSelect.value;
       const discountType = discountTypeSelect.value;
@@ -541,9 +587,10 @@
       if (isNaN(taxPercentage)) taxPercentage = 0;
       let serviceAmount = parseFloat(serviceAmountInput.value);
       if (isNaN(serviceAmount)) serviceAmount = 0;
-      
+
       transactions.push({
         id: transactionIdCounter++,
+        name: transactionName, // Store transaction name
         payerId: parseInt(transPayerId),
         menus: [...currentMenus],
         discountApplicationOrder,
@@ -552,7 +599,7 @@
         taxPercentage,
         serviceAmount
       });
-      
+
       // Reset transaction inputs.
       currentMenus = [];
       renderCurrentMenuList();
@@ -563,8 +610,9 @@
       discountValueInput.value = "";
       taxPercentageInput.value = "";
       serviceAmountInput.value = "";
+      transactionNameInput.value = '';
     });
-    
+
     // Update Settlement Select on the Settlement Page.
     function updateSettlementSelect() {
       participantSettlementSelect.innerHTML = '<option value="">Select Participant</option>';
@@ -575,7 +623,7 @@
         participantSettlementSelect.appendChild(option);
       });
     }
-    
+
     // Generate Detailed Settlement for a Given Participant.
     function generateParticipantSettlement(participantId) {
       // Overall net balance for participant.
@@ -610,69 +658,99 @@
         });
       });
       const overallBalance = overallBalances[participantId] || 0;
-      
+
       // Detailed breakdown per transaction.
       let detailsHtml = '';
       transactions.forEach(trans => {
         // Check if participant is involved (as payer or in any menu's sharing list).
-        let involved = (parseInt(trans.payerId) === participantId) ||
-                       trans.menus.some(menu => menu.sharing.includes(participantId));
+        let involved = (parseInt(trans.payerId) === participantId) || trans.menus.some(menu => menu.sharing.includes(participantId));
         if (!involved) return;
-        
-        let baseTotal = 0;
-        trans.menus.forEach(menu => { baseTotal += menu.price * menu.quantity; });
-        if (baseTotal === 0) return;
-        let discountApplied = 0;
-        if (trans.discountType === "percentage") discountApplied = baseTotal * (trans.discountValue / 100);
-        else if (trans.discountType === "flat") discountApplied = trans.discountValue;
-        let effectiveSubtotal = baseTotal - discountApplied;
-        if(effectiveSubtotal < 0) effectiveSubtotal = 0;
-        let tax, finalTotal;
-        if (trans.discountApplicationOrder === "before") {
-          tax = effectiveSubtotal * (trans.taxPercentage / 100);
-          finalTotal = effectiveSubtotal + tax + trans.serviceAmount;
-        } else {
-          tax = baseTotal * (trans.taxPercentage / 100);
-          finalTotal = baseTotal + tax + trans.serviceAmount - discountApplied;
-        }
-        // Compute per-transaction balances.
-        let trBalances = {};
-        participants.forEach(p => { trBalances[p.id] = 0; });
-        trBalances[trans.payerId] += finalTotal;
-        trans.menus.forEach(menu => {
-          const menuTotal = menu.price * menu.quantity;
-          const allocatedValue = (menuTotal / baseTotal) * finalTotal;
-          const shareCount = menu.sharing.length;
-          if(shareCount > 0){
-            const shareValue = allocatedValue / shareCount;
-            menu.sharing.forEach(pid => { trBalances[pid] -= shareValue; });
+
+        if (parseInt(trans.payerId) === participantId) {
+          detailsHtml += `<h4>${trans.name} (You are the payer)</h4>`;
+          // Calculate baseTotal, discount, tax, and finalTotal for payer
+          let baseTotal = 0;
+          trans.menus.forEach(menu => { baseTotal += menu.price * menu.quantity; });
+          let discountApplied = 0;
+          if (trans.discountType === "percentage") discountApplied = baseTotal * (trans.discountValue / 100);
+          else if (trans.discountType === "flat") discountApplied = trans.discountValue;
+          let effectiveSubtotal = baseTotal - discountApplied;
+          if (effectiveSubtotal < 0) effectiveSubtotal = 0;
+          let tax, finalTotal;
+          if (trans.discountApplicationOrder === "before") {
+            tax = effectiveSubtotal * (trans.taxPercentage / 100);
+            finalTotal = effectiveSubtotal + tax + trans.serviceAmount;
+          } else {
+            tax = baseTotal * (trans.taxPercentage / 100);
+            finalTotal = baseTotal + tax + trans.serviceAmount - discountApplied;
           }
-        });
-        const participantNet = trBalances[participantId];
-        detailsHtml += `<h4>Transaction #${trans.id} – Final Total: ${formatCurrency(finalTotal)}</h4>`;
-        detailsHtml += `<p>Base Total: ${formatCurrency(baseTotal)} | Discount: ${trans.discountType==="percentage"? trans.discountValue+"%" : formatCurrency(discountApplied)}<br>
-                        Tax: ${trans.taxPercentage}% | Service: ${formatCurrency(trans.serviceAmount)}</p>`;
-        detailsHtml += `<p>Your net amount in this transaction: ${formatCurrency(participantNet)}</p>`;
-        // List menus where participant is involved.
-        detailsHtml += '<table class="summary-table"><tr><th>Menu Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th><th>Your Share</th></tr>';
-        trans.menus.forEach(menu => {
-          if (menu.sharing.includes(participantId)) {
+          detailsHtml += `<p>You paid a total of ${formatCurrency(finalTotal)} for this transaction.</p>`;
+          // List participant names involved in the transaction
+          const involvedNames = [];
+          trans.menus.forEach(menu => {
+            menu.sharing.forEach(pid => {
+              if (!involvedNames.includes(getName(pid))) {
+                involvedNames.push(getName(pid));
+              }
+            });
+          });
+          detailsHtml += `<p>Participants involved: ${involvedNames.join(', ')}</p>`;
+        } else {
+          let baseTotal = 0;
+          trans.menus.forEach(menu => { baseTotal += menu.price * menu.quantity; });
+          if (baseTotal === 0) return;
+          let discountApplied = 0;
+          if (trans.discountType === "percentage") discountApplied = baseTotal * (trans.discountValue / 100);
+          else if (trans.discountType === "flat") discountApplied = trans.discountValue;
+          let effectiveSubtotal = baseTotal - discountApplied;
+          if (effectiveSubtotal < 0) effectiveSubtotal = 0;
+          let tax, finalTotal;
+          if (trans.discountApplicationOrder === "before") {
+            tax = effectiveSubtotal * (trans.taxPercentage / 100);
+            finalTotal = effectiveSubtotal + tax + trans.serviceAmount;
+          } else {
+            tax = baseTotal * (trans.taxPercentage / 100);
+            finalTotal = baseTotal + tax + trans.serviceAmount - discountApplied;
+          }
+          // Compute per-transaction balances.
+          let trBalances = {};
+          participants.forEach(p => { trBalances[p.id] = 0; });
+          trBalances[trans.payerId] += finalTotal;
+          trans.menus.forEach(menu => {
             const menuTotal = menu.price * menu.quantity;
             const allocatedValue = (menuTotal / baseTotal) * finalTotal;
             const shareCount = menu.sharing.length;
-            const yourShare = allocatedValue / shareCount;
-            detailsHtml += `<tr>
-                            <td>${menu.itemName}</td>
-                            <td>${formatCurrency(menu.price)}</td>
-                            <td>${menu.quantity}</td>
-                            <td>${formatCurrency(menuTotal)}</td>
-                            <td>${formatCurrency(yourShare)}</td>
-                           </tr>`;
-          }
-        });
-        detailsHtml += '</table>';
+            if (shareCount > 0) {
+              const shareValue = allocatedValue / shareCount;
+              menu.sharing.forEach(pid => { trBalances[pid] -= shareValue; });
+            }
+          });
+          const participantNet = trBalances[participantId];
+          detailsHtml += `<h4>${trans.name} - Final Total: ${formatCurrency(finalTotal)}</h4>`;
+          detailsHtml += `<p>Base Total: ${formatCurrency(baseTotal)} | Discount: ${trans.discountType === "percentage" ? trans.discountValue + "%" : formatCurrency(discountApplied)}<br>
+                            Tax: ${trans.taxPercentage}% | Service: ${formatCurrency(trans.serviceAmount)}</p>`;
+          detailsHtml += `<p>Your net amount in this transaction: ${formatCurrency(participantNet)}</p>`;
+          // List menus where participant is involved.
+          detailsHtml += '<table class="summary-table"><tr><th>Menu Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th><th>Your Share</th></tr>';
+          trans.menus.forEach(menu => {
+            if (menu.sharing.includes(participantId)) {
+              const menuTotal = menu.price * menu.quantity;
+              const allocatedValue = (menuTotal / baseTotal) * finalTotal;
+              const shareCount = menu.sharing.length;
+              const yourShare = allocatedValue / shareCount;
+              detailsHtml += `<tr>
+                                <td>${menu.itemName}</td>
+                                <td>${formatCurrency(menu.price)}</td>
+                                <td>${menu.quantity}</td>
+                                <td>${formatCurrency(menuTotal)}</td>
+                                <td>${formatCurrency(yourShare)}</td>
+                              </tr>`;
+            }
+          });
+          detailsHtml += '</table>';
+        }
       });
-      
+
       // Overall settlement instructions for participant based on individual transactions.
       let settlements = [];
 
@@ -753,7 +831,7 @@
       });
 
       settlements = settlements.flat()
-      
+
       //TODO: aggregate if from-to is equal to to-from
       const settlementsMap = {};
       settlements.forEach(s => {
@@ -792,7 +870,7 @@
             netAmount: 0
           };
         }
-        
+
         // Determine the direction relative to the sorted order.
         if (s.from === netSettlements[key].first && s.to === netSettlements[key].second) {
           netSettlements[key].netAmount += s.amount;
@@ -811,7 +889,7 @@
           // No net settlement is needed.
           return;
         }
-        
+
         if (pair.netAmount > 0) {
           // That means 'first' owes 'second'.
           finalSettlements.push({
@@ -838,7 +916,7 @@
 
 
       // Generate detailed settlement instructions for the participant
-      let settlementInstr = '<h3>Your Detailed Settlement Instructions</h3>';
+      let settlementInstr = `<h3>${getName(participantId)}'s Split Bill Summary</h3>`;
       if (partSettlements.length === 0) {
         settlementInstr += '<p>No settlement needed. Your balance is zero.</p>';
       } else {
@@ -855,13 +933,13 @@
         settlementInstr += '</table>';
       }
 
-      return `<h3>Your Detailed Settlement Instructions</h3>`
-              + detailsHtml + settlementInstr;
+      return `<br><h3>Detailed Settlement Instructions</h3>`
+        + detailsHtml + settlementInstr;
 
     }
-    
+
     // When a participant is selected on the Settlement page, display their details.
-    participantSettlementSelect.addEventListener('change', function(){
+    participantSettlementSelect.addEventListener('change', function () {
       const selectedId = parseInt(this.value);
       if (!isNaN(selectedId)) {
         const details = generateParticipantSettlement(selectedId);
@@ -870,7 +948,7 @@
         participantSettlementResult.innerHTML = '';
       }
     });
-    
+
     // Update Settlement Select dropdown.
     function updateSettlementDropdown() {
       participantSettlementSelect.innerHTML = '<option value="">Select Participant</option>';
@@ -881,18 +959,50 @@
         participantSettlementSelect.appendChild(option);
       });
     }
-    
+
     // Bottom Navigation Handling.
     document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', function(){
-         const targetPage = this.getAttribute('data-page');
-         document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); });
-         document.getElementById(targetPage).classList.add('active');
+      btn.addEventListener('click', function () {
+        const targetPage = this.getAttribute('data-page');
+        document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); });
+        document.getElementById(targetPage).classList.add('active');
       });
     });
-    
+
     // Initialize options on load.
     updateParticipantOptions();
+
+    document.getElementById('downloadAllSettlementsPDF').addEventListener('click', async function () {
+      const { jsPDF } = window.jspdf;
+      for (const p of participants) {
+        const htmlContent = generateParticipantSettlement(p.id);
+
+        // Create a temporary container for HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        document.body.appendChild(tempDiv);
+
+        // Create a new jsPDF instance
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        // Use jsPDF's html() method to render HTML content including tables
+        await pdf.html(tempDiv, {
+          x: 10,
+          y: 10,
+          width: 180,
+          windowWidth: 800,
+          callback: function () {
+            pdf.save(`Settlement_${p.name.replace(/\s+/g, '_')}.pdf`);
+            document.body.removeChild(tempDiv);
+          }
+        });
+      }
+    });
   </script>
 </body>
+
 </html>
