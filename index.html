@@ -46,6 +46,9 @@
     /* Pages */
     .page {
       display: none;
+      width: 50%; /* Or a fixed pixel value like 300px */
+      margin: 0 auto; /* Sets top/bottom margin to 0 and left/right to auto */
+      width: 28rem;
     }
 
     .page.active {
@@ -189,7 +192,6 @@
 <body>
   <!-- Header -->
   <header>
-    <span id="menu-icon">☰</span>
     <h1>Split Bill App</h1>
   </header>
 
@@ -666,7 +668,7 @@
         let involved = (parseInt(trans.payerId) === participantId) || trans.menus.some(menu => menu.sharing.includes(participantId));
         if (!involved) return;
 
-        if (parseInt(trans.payerId) === participantId) {
+        if (parseInt(trans.payerId) === participantId && !trans.menus.some(menu => menu.sharing.includes(participantId))) {
           detailsHtml += `<h4>${trans.name} (You are the payer)</h4>`;
           // Calculate baseTotal, discount, tax, and finalTotal for payer
           let baseTotal = 0;
@@ -933,7 +935,7 @@
         settlementInstr += '</table>';
       }
 
-      return `<br><h3>Detailed Settlement Instructions</h3>`
+      return `<br><h3>${getName(participantId)} Detailed Settlement Instructions</h3>`
         + detailsHtml + settlementInstr;
 
     }
