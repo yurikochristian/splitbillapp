@@ -728,7 +728,8 @@
             }
           });
           const participantNet = trBalances[participantId];
-          detailsHtml += `<h4>${trans.name} - Final Total: ${formatCurrency(finalTotal)}</h4>`;
+          detailsHtml += `<br><h4>${trans.name} - Final Total: ${formatCurrency(finalTotal)}</h4>`;
+          detailsHtml += `<p>Paid by: ${getName(trans.payerId)}</p>`;
           detailsHtml += `<p>Base Total: ${formatCurrency(baseTotal)} | Discount: ${trans.discountType === "percentage" ? trans.discountValue + "%" : formatCurrency(discountApplied)}<br>
                             Tax: ${trans.taxPercentage}% | Service: ${formatCurrency(trans.serviceAmount)}</p>`;
           detailsHtml += `<p>Your net amount in this transaction: ${formatCurrency(participantNet)}</p>`;
